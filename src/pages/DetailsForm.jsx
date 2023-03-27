@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-
 function DetailsForm() {
     return (
         <form>
@@ -18,12 +17,9 @@ function DetailsForm() {
                 <label className="form-label fw-light">Password</label>
                 <input type="password" className="form-control" id="password" />
             </div>
-            <div className="d-flex flex-row-reverse">
-            <Link to={"/plan"} >
-                <button type="submit" className="btn btn-primary">Next Step</button>
-            </Link>
+            <div className="d-flex flex-row-reverse mt-5">
             </div>
-
+        
         </form>
     )
 }

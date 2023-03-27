@@ -13,15 +13,6 @@ function AddOnsPage() {
                 <AddOnsCard name="Customizable Profile" sub="Custom theme on your profile"/>
             </div>
 
-            <div className="d-flex mt-5 justify-content-between ">
-                <Link to={"/plan"}>
-                    <button type="submit" className="btn btn-light">Back</button>
-                </Link>
-
-                <Link to={"/summary"}>
-                    <button type="submit" className="btn btn-primary">Next Step</button>
-                </Link>
-            </div>
         </div>
     )
 }

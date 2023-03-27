@@ -1,7 +1,7 @@
 import sideBarImage from '../assets/bg-sidebar-desktop.svg'
 import SidebarText from './SidebarText';
 
-function Sidebar() {
+function Sidebar(props) {
     return (
         <div className='position-relative'>
             <img src={sideBarImage} alt="sideBar" className="img-fluid"/>

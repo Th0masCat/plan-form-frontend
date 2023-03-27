@@ -3,8 +3,6 @@ import PlanCard from "./PlanCard";
 import arcadeImage from "../assets/icon-arcade.svg";
 import advancedImage from "../assets/icon-advanced.svg";
 import proImage from "../assets/icon-pro.svg";
-
-
 function PlanDetails() {
     return (
         <>
@@ -26,13 +24,7 @@ function PlanDetails() {
 
             <div className="d-flex mt-5 justify-content-between ">
             
-            <Link to={"/"}>
-                <button type="submit" className="btn btn-light">Back</button>
-            </Link>
-        
-            <Link to={"/addons"}>
-                <button type="submit" className="btn btn-primary">Next Step</button>
-            </Link>
+
             
             </div>
 
