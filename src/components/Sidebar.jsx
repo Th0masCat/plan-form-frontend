@@ -1,6 +1,6 @@
 import sideBarImage from '../assets/bg-sidebar-desktop.svg'
 import SidebarText from './SidebarText';
-import { PageContext } from "../PageContext";
+import { PageContext } from "../context/PageContext";
 import { useContext } from "react";
 
 function Sidebar() {
