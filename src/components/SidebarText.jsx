@@ -1,12 +1,13 @@
 import { Link } from "react-router-dom";
 import "./sidebar.css"
 
+
 function SidebarText(props) {
     return (
         <div className='d-flex align-items-stretch justify-content-start'>
             <div>
                 <Link to={props.path}>
-                    <button type='button' className='btn btn-outline-light me-2 circular-button text-decoration-none'>
+                    <button onClick={props.change} type='button' className='btn btn-outline-light me-2 circular-button text-decoration-none'>
                         {props.number}
                     </button>
                 </Link>

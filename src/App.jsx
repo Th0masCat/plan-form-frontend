@@ -1,11 +1,12 @@
-import Sidebar from './pages/Sidebar'
-import DetailsForm from './pages/DetailsForm'
+import Sidebar from './components/Sidebar'
+import DetailsForm from './components/DetailsForm'
 import { Link, Route, Routes } from 'react-router-dom'
-import PlanDetails from './pages/PlanDetails'
-import AddOnsPage from './pages/AddOnsPage'
-import SummaryPage from './pages/SummaryPage'
+import PlanDetails from './components/PlanDetails'
+import AddOnsPage from './components/AddOnsPage'
+import SummaryPage from './components/SummaryPage'
 import { useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
+import { PageContext } from './PageContext'
 
 function App() {
   const links = ['/', '/plan', '/addons', '/summary']
@@ -25,6 +26,7 @@ function App() {
 
 
   return (
+    <PageContext.Provider value={{currentPage, setCurrentPage}}>
     <div className="card pe-5" >
       <div className="card-body ps-3 d-flex align-items-center ">
         <Sidebar />
@@ -48,6 +50,7 @@ function App() {
 
       </div>
     </div>
+    </PageContext.Provider>
   )
 }
 
