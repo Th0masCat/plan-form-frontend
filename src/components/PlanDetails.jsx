@@ -2,9 +2,15 @@ import PlanCard from "./PlanCard";
 import arcadeImage from "../assets/icon-arcade.svg";
 import advancedImage from "../assets/icon-advanced.svg";
 import proImage from "../assets/icon-pro.svg";
+import { useRecoilState } from "recoil";
+import { registerFormState } from "../atoms/registerForms";
+
 function PlanDetails() {
+    const [form, setForm] = useRecoilState(registerFormState);
+   
     return (
         <>
+        {console.log(form.name)}
             <h1 className="fs-1 mb-2">Select your plan</h1>
             <p className="mb-4"> You have the option of monthly or yearly billing.
             </p>
@@ -20,13 +26,6 @@ function PlanDetails() {
                 </div>
                 <div className="text-lighter">Yearly</div>
             </div>
-
-            <div className="d-flex mt-5 justify-content-between ">
-            
-
-            
-            </div>
-
         </>
     );
 }

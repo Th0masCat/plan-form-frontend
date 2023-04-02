@@ -4,3 +4,4 @@ export const PageContext = createContext({
     page: 1,
     setPage: (page: number) => {}
 });
+

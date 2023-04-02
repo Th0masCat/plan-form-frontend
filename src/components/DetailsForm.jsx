@@ -1,10 +1,9 @@
-import { useState } from "react";
+import { useRecoilState } from "recoil";
+import { registerFormState } from "../atoms/registerForms";
 
 function DetailsForm() {
-    const [name, setName] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    
+    const [form, setForm] = useRecoilState(registerFormState);
+        
     return (
         <form>
             <h1 className="fs-1 mb-2">Personal Info</h1>
@@ -12,19 +11,17 @@ function DetailsForm() {
             and phone number.</p>
             <div className="mb-3">
                 <label className="form-label fw-light">Name</label>
-                <input value={name} onChange={e=>{setName(e.target.value)}} type="text" className="form-control" id="name" aria-describedby="emailHelp" />
+                <input value={form.name} onChange={e=>setForm({...form, name: e.target.value})} type="text" className="form-control" id="name" aria-describedby="emailHelp" />
             </div>
-            {console.log(name)}
+            {console.log(form.name)}
             <div className="mb-3">
                 <label className="form-label fw-light">Email address</label>
-                <input value={email} onChange={e=>{setEmail(e.target.value)}} type="email" className="form-control" id="email" aria-describedby="emailHelp" />
+                <input value={form.email} onChange={e=>setForm({...form, email: e.target.value})} type="email" className="form-control" id="email" aria-describedby="emailHelp" />
             </div>
             <div className="mb-3">
-                <label className="form-label fw-light">Password</label>
-                <input value={password} onChange={e=>{setPassword(e.target.value)}} type="password" className="form-control" id="password" />
-                {console.log(password)}
-            </div>
-            <div className="d-flex flex-row-reverse mt-5">
+                <label className="form-label fw-light">Phone Number</label>
+                <input value={form.phone} onChange={e=>setForm({...form, phone:e.target.value})} type="tel" className="form-control" id="phone" />
+                {console.log(form.phone)}
             </div>
         
         </form>

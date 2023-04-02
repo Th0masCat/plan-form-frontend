@@ -7,7 +7,6 @@ function AddOnsCard(props) {
                     <h6 className="text-start m-0">{props.name}</h6>
                     <h6 className="text-start fw-lighter m-0">{props.sub}</h6>
                 </div>
-                {/* <h6 className="text-start m-0 fw-lighter fs-6">{props.name}</h6> */}
             </div>
 
         </div>
