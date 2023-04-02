@@ -1,3 +1,4 @@
+// Description: This is the AddOnsPage component
 import AddOnsCard from "./AddOnsCard";
 
 function AddOnsPage() {

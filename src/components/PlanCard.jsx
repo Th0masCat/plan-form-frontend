@@ -5,8 +5,6 @@ import { registerFormState } from "../atoms/registerForms";
 function PlanCard(props) {
     const [form, setForm] = useRecoilState(registerFormState);
     
-
-    
     return (
         <label className="btn btn-light me-2" htmlFor={props.title} style={{ width: "9rem", height: "14rem" }}>
             <input onChange={e=>setForm({...form, plan_name:props.id})}  type="radio" name="options" id={props.title} style={{ visibility: "hidden" }} />

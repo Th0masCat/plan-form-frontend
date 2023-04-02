@@ -1,3 +1,4 @@
+// Description: This component is used to create the AddOns card for the register page
 import { useRecoilState } from "recoil";
 import { registerFormState } from "../atoms/registerForms";
 import { useEffect } from "react";
