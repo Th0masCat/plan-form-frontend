@@ -13,7 +13,6 @@ function DetailsForm() {
                 <label className="form-label fw-light">Name</label>
                 <input value={form.name} onChange={e=>setForm({...form, name: e.target.value})} type="text" className="form-control" id="name" aria-describedby="emailHelp" />
             </div>
-            {console.log(form.name)}
             <div className="mb-3">
                 <label className="form-label fw-light">Email address</label>
                 <input value={form.email} onChange={e=>setForm({...form, email: e.target.value})} type="email" className="form-control" id="email" aria-describedby="emailHelp" />
@@ -21,7 +20,6 @@ function DetailsForm() {
             <div className="mb-3">
                 <label className="form-label fw-light">Phone Number</label>
                 <input value={form.phone} onChange={e=>setForm({...form, phone:e.target.value})} type="tel" className="form-control" id="phone" />
-                {console.log(form.phone)}
             </div>
         
         </form>

@@ -1,16 +1,29 @@
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
+import { Route, Routes } from 'react-router-dom'
+import axios from 'axios'
+import { useRecoilValue } from "recoil";
+
+//Components
 import Sidebar from './Sidebar'
 import DetailsForm from './DetailsForm'
-import { Route, Routes } from 'react-router-dom'
 import PlanDetails from './PlanDetails'
 import AddOnsPage from './AddOnsPage'
 import SummaryPage from './SummaryPage'
+
+//Context
 import { PageContext } from '../context/PageContext'
+import { registerFormState } from "../atoms/registerForms";
+
 
 function MainPage() {
+    //Navigation Bar logic
     const links = ['/', '/plan', '/addons', '/summary']
-    const totalPages = 4;
+    const totalPages = links.length;
+
+    const [currentPage, setCurrentPage] = useState(1);
+    const nav = useNavigate();
+
     const goToNextPage = () => {
         setCurrentPage((page) => page + 1);
         nav(links[currentPage])
@@ -21,8 +34,22 @@ function MainPage() {
         nav(links[currentPage - 2])
     };
 
-    const [currentPage, setCurrentPage] = useState(1);
-    const nav = useNavigate();
+    //Form Submission
+    const form = useRecoilValue(registerFormState);
+
+    const handleFormSubmit = (e) => {
+        e.preventDefault();
+        console.log('form submitted');
+        axios.post('http://127.0.0.1:8000/plans/', form)
+            .then(res => {
+                console.log(res);
+                console.log(res.data);
+            })
+        console.log(form)
+        goToPreviousPage();
+        { console.log(form) }
+        goToNextPage();
+    }
 
     return (
         <PageContext.Provider value={{ currentPage, setCurrentPage }}>
@@ -42,13 +69,15 @@ function MainPage() {
                                 currentPage === 1 ?
                                     <></>
                                     :
-                                    <button onClick={goToPreviousPage} type="submit" className="btn btn-light">Go back</button>
+                                    <button onClick={goToNextPage} type="submit" className="btn btn-light">Go back</button>
                             }
                             {
-                                currentPage === totalPages ?
-                                    <button type="submit" className="btn btn-primary disabled align-self-end" aria-disabled="true">Submit</button>
+                                currentPage === 3 ? <button onClick={handleFormSubmit} type="submit" className="btn btn-primary">Next Step</button>
                                     :
-                                    <button onClick={goToNextPage} type="submit" className="btn btn-primary">Next Step</button>}
+                                    currentPage === totalPages ?
+                                        <button type="submit" className="btn btn-primary disabled align-self-end" aria-disabled="true">Submit</button>
+                                        :
+                                        <button onClick={goToNextPage} type="submit" className="btn btn-primary">Next Step</button>}
                         </div>
                     </div>
 

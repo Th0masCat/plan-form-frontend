@@ -6,12 +6,11 @@ export const registerFormState = atom({
         name: "",
         email: "",
         phone: "",
-        plan: "",
-        addOns: {
-            onlineService: false,
-            largerStorage: false,
-            customizableProfile: false
-        }
+        plan_name: "",
+        plan_duration_is_monthly: true,
+        online_service: false,
+        larger_storage: false,
+        customizable_profile: false
     }
 });
 
