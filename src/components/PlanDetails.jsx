@@ -21,7 +21,7 @@ function PlanDetails() {
             <div className="d-flex justify-content-evenly mt-3 p-2 ">
                 <div className="text-lighter">Monthly</div>
                 <div className="form-check form-switch ">
-                    <input onChange={e => setForm({ ...form, plan_duration_is_monthly: !form.plan_duration_is_monthly })} className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" />
+                    <input checked={form.plan_duration_is_monthly?false:true} onChange={e => setForm({ ...form, plan_duration_is_monthly: !form.plan_duration_is_monthly })} className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" />
                 </div>
                 <div className="text-lighter">Yearly</div>
             </div>

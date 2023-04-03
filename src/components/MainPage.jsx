@@ -80,7 +80,7 @@ function MainPage() {
                                 currentPage === 1 ?
                                     <></>
                                     :
-                                    <button onClick={goToNextPage} type="submit" className="btn btn-light">Go back</button>
+                                    <button onClick={goToPreviousPage} type="submit" className="btn btn-light">Go back</button>
                             }
                             {
                                 //Page 3: Next Button sends post request and goes to next page

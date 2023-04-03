@@ -13,7 +13,6 @@ const PlanName = {
 }
 
 
-
 function SummaryPage(props) {
 
     const { setCurrentPage } = useContext(PageContext);
@@ -21,8 +20,8 @@ function SummaryPage(props) {
     const nav = useNavigate()
     const list = props.cost.add_ons.map((item) => {
         return (
-            <tr>
-                <td key={item} scope="col" style={{textTransform: "capitalize"}}>
+            <tr key={item}>
+                <td  scope="col" style={{textTransform: "capitalize"}}>
                     {item[0].replace(/_/g, " ")}
                 </td>
                 <td align="right">
@@ -39,7 +38,7 @@ function SummaryPage(props) {
             <div className="d-flex align-content-center bg-light flex-column p-3" style={{ borderRadius: "8px" }}>
                 <table className="table table-borderless " >
                     <thead>
-                        <tr>
+                        <tr key={1}>
                             <th scope="col">{PlanName[form.plan_name]} {form.plan_duration_is_monthly ? <>(Monthly)</> : <>(Yearly)</>}
                                 <br /><Link to='/plan' onClick={() => setCurrentPage(2)}>Change</Link>
                             </th>
