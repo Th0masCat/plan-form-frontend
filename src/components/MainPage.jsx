@@ -36,6 +36,12 @@ function MainPage() {
 
     //Form Submission
     const form = useRecoilValue(registerFormState);
+    const [totalCost, setTotalCost] = useState({
+        'plan_name': 'Arcade',
+        'plan_cost': 9,
+        'add_ons': [],
+        'total_cost': 9,
+    });
 
     const handleFormSubmit = (e) => {
         e.preventDefault();
@@ -44,9 +50,9 @@ function MainPage() {
             .then(res => {
                 console.log(res);
                 console.log(res.data);
+                setTotalCost(res.data);
             })
-        console.log(form)
-        goToPreviousPage();
+
         { console.log(form) }
         goToNextPage();
     }
@@ -64,7 +70,7 @@ function MainPage() {
                             <Route path='/' element={<DetailsForm />} />
                             <Route path='/plan' element={<PlanDetails />} />
                             <Route path='/addons' element={<AddOnsPage />} />
-                            <Route path='/summary' element={<SummaryPage />} />
+                            <Route path='/summary' element={<SummaryPage cost={totalCost} />} />
                         </Routes>
 
                         {/* Navigation Bar */}

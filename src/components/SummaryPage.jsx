@@ -1,5 +1,36 @@
 
-function SummaryPage() {
+import { useRecoilState } from "recoil";
+import { registerFormState } from "../atoms/registerForms";
+import { Link, useNavigate } from "react-router-dom";
+import { useContext } from "react";
+
+import { PageContext } from "../context/PageContext";
+
+const PlanName = {
+    '1': "Arcade",
+    '2': "Advanced",
+    '3': "Pro"
+}
+
+
+
+function SummaryPage(props) {
+
+    const { setCurrentPage } = useContext(PageContext);
+    const [form, setForm] = useRecoilState(registerFormState);
+    const nav = useNavigate()
+    const list = props.cost.add_ons.map((item) => {
+        return (
+            <tr>
+                <td key={item} scope="col" style={{textTransform: "capitalize"}}>
+                    {item[0].replace(/_/g, " ")}
+                </td>
+                <td align="right">
+                    +${item[1]}
+                </td>
+            </tr>)
+    })
+
     return (
         <div>
             <h1 className="fs-1 mb-2">Finishing up</h1>
@@ -9,27 +40,18 @@ function SummaryPage() {
                 <table className="table table-borderless " >
                     <thead>
                         <tr>
-                            <th scope="col">Arcade(Monthly)
-                                <br /><a href="">Change</a>
+                            <th scope="col">{PlanName[form.plan_name]} {form.plan_duration_is_monthly ? <>(Monthly)</> : <>(Yearly)</>}
+                                <br /><Link to='/plan' onClick={() => setCurrentPage(2)}>Change</Link>
                             </th>
 
-                            <td scope="col" align="right" style={{ verticalAlign: "middle" }}>$9/mo</td>
+                            <td scope="col" align="right" style={{ verticalAlign: "middle" }}>${props.cost.plan_cost}/mo</td>
                         </tr>
-
-                        <tr>
-                            <td scope="col">Online service</td>
-                            <td align="right">+$1</td>
-                        </tr>
-
-                        <tr>
-                            <td scope="col">Larger storage</td>
-                            <td align="right">+$2</td>
-                        </tr>
+                        {list}
                     </thead>
                 </table>
                 <div className="d-flex justify-content-between">
                     <p>Total(per month)</p>
-                    <p>+$12/mo</p>
+                    <p>+${props.cost.total_cost}/mo</p>
                 </div>
 
             </div>

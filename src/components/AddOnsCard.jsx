@@ -5,17 +5,10 @@ import { useEffect } from "react";
 
 function AddOnsCard(props) {
     const [form, setForm] = useRecoilState(registerFormState);
-    {console.log(props.name)}
+    {()=>console.log(props.name)}
     const handleOnChange = () => {
         setForm({ ...form, [props.form_id]: !form[props.form_id] })
     };
-
-    useEffect(
-        () => {
-            console.log(form);
-        }
-        , [form]
-    )
 
     return (
         <div>
