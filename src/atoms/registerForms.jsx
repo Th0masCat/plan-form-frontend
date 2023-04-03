@@ -10,6 +10,7 @@ export const registerFormState = atom({
         plan_duration_is_monthly: true,
         online_service: false,
         larger_storage: false,
-        customizable_profile: false
+        customizable_profile: false,
+        confirmed_data: false,
     }
 });

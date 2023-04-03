@@ -12,7 +12,6 @@ const PlanName = {
     '3': "Pro"
 }
 
-
 function SummaryPage(props) {
 
     const { setCurrentPage } = useContext(PageContext);
@@ -49,7 +48,7 @@ function SummaryPage(props) {
                     </thead>
                 </table>
                 <div className="d-flex justify-content-between">
-                    <p>Total(per month)</p>
+                    <p>Total(per {form.plan_duration_is_monthly ? <>month</> : <>year</>})</p>
                     <p>+${props.cost.total_cost}/mo</p>
                 </div>
 

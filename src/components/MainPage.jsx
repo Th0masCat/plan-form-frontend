@@ -43,9 +43,9 @@ function MainPage() {
         'total_cost': 9,
     });
 
-    const handleFormSubmit = (e) => {
+    const handleFormChange = (e) => {
         e.preventDefault();
-        console.log('form submitted');
+        console.log('data stored');
         axios.post('http://127.0.0.1:8000/plans/', form)
             .then(res => {
                 console.log(res);
@@ -56,6 +56,22 @@ function MainPage() {
         { console.log(form) }
         goToNextPage();
     }
+
+    const handleFormSubmit = (e) => {
+        const finalForm = {
+            ...form,
+            total_cost: totalCost.total_cost,
+            confirmed_data: true
+        }
+        e.preventDefault();
+        console.log('form submitted');
+        axios.post('http://127.0.0.1:8000/plans/', finalForm)
+            .then(res => {
+                console.log(res);
+                console.log(res.data);
+            })
+    }
+
 
     return (
         //Context for navigation bar
@@ -84,11 +100,11 @@ function MainPage() {
                             }
                             {
                                 //Page 3: Next Button sends post request and goes to next page
-                                currentPage === 3 ? <button onClick={handleFormSubmit} type="submit" className="btn btn-primary">Next Step</button>
+                                currentPage === 3 ? <button onClick={handleFormChange} type="submit" className="btn btn-primary">Next Step</button>
                                     :
                                     //Page 4: Next button changes to submit if on last page
                                     currentPage === totalPages ?
-                                        <button type="submit" className="btn btn-primary disabled align-self-end" aria-disabled="true">Submit</button>
+                                        <button type="submit" onClick={handleFormSubmit} className="btn btn-primary align-self-end">Submit</button>
                                         :
                                         <button onClick={goToNextPage} type="submit" className="btn btn-primary">Next Step</button>}
                         </div>

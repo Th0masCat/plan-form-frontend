@@ -14,14 +14,16 @@ function PlanDetails() {
             <p className="mb-4"> You have the option of monthly or yearly billing.
             </p>
             <div className="btn-group" data-bs-toggle="buttons">
-                <PlanCard id="1" title='Arcade' price='$9/mo' image={arcadeImage} />
-                <PlanCard id="2" title='Advanced' price='$12/mo' image={advancedImage} />
-                <PlanCard id="3" title='Pro' price='$15/mo' image={proImage} />
+                <PlanCard id="1" title='Arcade' price={form.plan_duration_is_monthly ? '$9/mo' : '$90/yr'} image={arcadeImage} />
+                <PlanCard id="2" title='Advanced' price={form.plan_duration_is_monthly ? '$12/mo' : '$120/yr'} image={advancedImage} />
+                <PlanCard id="3" title='Pro' price={form.plan_duration_is_monthly ? '$15/mo' : '$150/yr'} image={proImage} />
             </div>
             <div className="d-flex justify-content-evenly mt-3 p-2 ">
                 <div className="text-lighter">Monthly</div>
                 <div className="form-check form-switch ">
-                    <input checked={form.plan_duration_is_monthly?false:true} onChange={e => setForm({ ...form, plan_duration_is_monthly: !form.plan_duration_is_monthly })} className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" />
+                    <input checked={form.plan_duration_is_monthly ? false : true}
+                        onChange={e => setForm({ ...form, plan_duration_is_monthly: !form.plan_duration_is_monthly })}
+                        className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" />
                 </div>
                 <div className="text-lighter">Yearly</div>
             </div>
