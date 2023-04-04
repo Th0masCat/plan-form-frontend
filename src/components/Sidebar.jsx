@@ -8,7 +8,7 @@ function Sidebar() {
     const {setCurrentPage} = useContext(PageContext);
     return (
         <div className='position-relative'>
-            <img src={sideBarImage} alt="sideBar" className="img-fluid"/>
+            <img src={sideBarImage} alt="sideBar" className="img"/>
             <div className='position-absolute ps-5 pt-5 top-0 text-white'>
                 <SidebarText change={()=>{setCurrentPage(1)}} text="Your Info" number="1" path="/"/>
                 <SidebarText change={()=>{setCurrentPage(2)}} text="Select Plan" number="2" path="/plan"/>

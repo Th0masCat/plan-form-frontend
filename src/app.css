@@ -1,5 +1,0 @@
-.card {
-     transition: max-width 0.5s, min-width 0.5s;
-     max-width: 55rem;
-    min-width: 40rem;
-}

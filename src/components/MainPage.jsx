@@ -1,8 +1,10 @@
-import { useNavigate } from 'react-router-dom'
-import { useState } from 'react'
-import { Route, Routes } from 'react-router-dom'
+import { useNavigate, Route, Routes } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import axios from 'axios'
 import { useRecoilValue } from "recoil";
+
+//Styles
+import "./plan.css";
 
 //Components
 import Sidebar from './Sidebar'
@@ -15,23 +17,19 @@ import SummaryPage from './SummaryPage'
 import { PageContext } from '../context/PageContext'
 import { registerFormState } from "../atoms/registerForms";
 
-
 function MainPage() {
     //Navigation Bar logic
-    const links = ['/', '/plan', '/addons', '/summary']
-    const totalPages = links.length;
+    const totalPages = 4;
 
     const [currentPage, setCurrentPage] = useState(1);
-    const nav = useNavigate();
 
     const goToNextPage = () => {
         setCurrentPage((page) => page + 1);
-        nav(links[currentPage])
+
     };
 
     const goToPreviousPage = () => {
         setCurrentPage((page) => page - 1);
-        nav(links[currentPage - 2])
     };
 
     //Form Submission
@@ -72,23 +70,52 @@ function MainPage() {
             })
     }
 
+    //Card Width
+    const [cardWidth, setCardWidth] = useState('45rem');
+
+    useEffect(() => {
+        if (currentPage === 1) {
+            setCardWidth('45rem');
+        }
+        else if (currentPage === 2) {
+            setCardWidth('53rem');
+        }
+        else if (currentPage === 3) {
+            setCardWidth('48rem');
+        }
+        else if (currentPage === 4) {
+            setCardWidth('50rem');
+        }
+    }, [currentPage])
+
+    //Page Change
+    const handlePageChange = (page) => {
+        if (page === 1) {
+            return <DetailsForm />
+        }
+        else if (page === 2) {
+            return <PlanDetails />
+        }
+        else if (page === 3) {
+            return <AddOnsPage />
+        }
+        else if (page === 4) {
+            return <SummaryPage cost={totalCost} handleFormSubmit={handleFormSubmit} />
+        }
+    }
+
 
     return (
         //Context for navigation bar
         <PageContext.Provider value={{ currentPage, setCurrentPage }}>
             {/* Card Body */}
-            <div className="card pe-5" >
+            <div className="card pe-5" style={{ width: cardWidth }}>
                 <div className="card-body ps-3 d-flex align-items-center ">
                     <Sidebar />
-                    <div className='ms-5'>
-                        {/* Routes */}
-                        <Routes>
-                            <Route path='/' element={<DetailsForm />} />
-                            <Route path='/plan' element={<PlanDetails />} />
-                            <Route path='/addons' element={<AddOnsPage />} />
-                            <Route path='/summary' element={<SummaryPage cost={totalCost} />} />
-                        </Routes>
-
+                    <div className='ms-5 w-100'>
+                        {
+                            handlePageChange(currentPage)
+                        }
                         {/* Navigation Bar */}
                         <div className="d-flex mt-5 justify-content-between w-100 ">
                             {
@@ -111,7 +138,6 @@ function MainPage() {
                     </div>
 
                     {console.log(currentPage)}
-                    {console.log(links[currentPage])}
 
                 </div>
             </div>

@@ -9,11 +9,11 @@ function PlanDetails() {
     const [form, setForm] = useRecoilState(registerFormState);
 
     return (
-        <>
+        <div>
             <h1 className="fs-1 mb-2">Select your plan</h1>
             <p className="mb-4"> You have the option of monthly or yearly billing.
             </p>
-            <div className="btn-group" data-bs-toggle="buttons">
+            <div className="btn-group w-100" data-bs-toggle="buttons">
                 <PlanCard id="1" title='Arcade' price={form.plan_duration_is_monthly ? '$9/mo' : '$90/yr'} image={arcadeImage} />
                 <PlanCard id="2" title='Advanced' price={form.plan_duration_is_monthly ? '$12/mo' : '$120/yr'} image={advancedImage} />
                 <PlanCard id="3" title='Pro' price={form.plan_duration_is_monthly ? '$15/mo' : '$150/yr'} image={proImage} />
@@ -27,7 +27,7 @@ function PlanDetails() {
                 </div>
                 <div className="text-lighter">Yearly</div>
             </div>
-        </>
+        </div>
     );
 }
 

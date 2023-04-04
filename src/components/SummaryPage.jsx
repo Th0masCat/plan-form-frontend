@@ -1,9 +1,7 @@
 
-import { useRecoilState } from "recoil";
+import { useRecoilValue } from "recoil";
 import { registerFormState } from "../atoms/registerForms";
-import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
-
 import { PageContext } from "../context/PageContext";
 
 const PlanName = {
@@ -15,8 +13,8 @@ const PlanName = {
 function SummaryPage(props) {
 
     const { setCurrentPage } = useContext(PageContext);
-    const [form, setForm] = useRecoilState(registerFormState);
-    const nav = useNavigate()
+    const form = useRecoilValue(registerFormState);
+    
     const list = props.cost.add_ons.map((item) => {
         return (
             <tr key={item}>
@@ -39,7 +37,7 @@ function SummaryPage(props) {
                     <thead>
                         <tr key={1}>
                             <th scope="col">{PlanName[form.plan_name]} {form.plan_duration_is_monthly ? <>(Monthly)</> : <>(Yearly)</>}
-                                <br /><Link to='/plan' onClick={() => setCurrentPage(2)}>Change</Link>
+                                <br /><a onClick={() => setCurrentPage(2)}>Change</a>
                             </th>
 
                             <td scope="col" align="right" style={{ verticalAlign: "middle" }}>${props.cost.plan_cost}/mo</td>
@@ -51,7 +49,6 @@ function SummaryPage(props) {
                     <p>Total(per {form.plan_duration_is_monthly ? <>month</> : <>year</>})</p>
                     <p>+${props.cost.total_cost}/mo</p>
                 </div>
-
             </div>
         </div>
     );
