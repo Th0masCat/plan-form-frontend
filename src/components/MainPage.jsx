@@ -41,10 +41,11 @@ function MainPage() {
         'total_cost': 9,
     });
 
+    //Send data for total cost
     const handleFormChange = (e) => {
         e.preventDefault();
         console.log('data stored');
-        axios.post('http://127.0.0.1:8000/plans/', form)
+        axios.post(process.env.ENDPOINT, form)
             .then(res => {
                 console.log(res);
                 console.log(res.data);
@@ -55,6 +56,7 @@ function MainPage() {
         goToNextPage();
     }
 
+    //Send data to database
     const handleFormSubmit = (e) => {
         const finalForm = {
             ...form,
@@ -63,7 +65,7 @@ function MainPage() {
         }
         e.preventDefault();
         console.log('form submitted');
-        axios.post('http://127.0.0.1:8000/plans/', finalForm)
+        axios.post(process.env.ENDPOINT, finalForm)
             .then(res => {
                 console.log(res);
                 console.log(res.data);
