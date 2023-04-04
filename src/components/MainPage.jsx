@@ -45,7 +45,7 @@ function MainPage() {
     const handleFormChange = (e) => {
         e.preventDefault();
         console.log('data stored');
-        axios.post(process.env.ENDPOINT, form)
+        axios.post('https://web-production-b3b7.up.railway.app/plans/', form)
             .then(res => {
                 console.log(res);
                 console.log(res.data);
@@ -65,7 +65,7 @@ function MainPage() {
         }
         e.preventDefault();
         console.log('form submitted');
-        axios.post(process.env.ENDPOINT, finalForm)
+        axios.post('https://web-production-b3b7.up.railway.app/plans/', finalForm)
             .then(res => {
                 console.log(res);
                 console.log(res.data);
