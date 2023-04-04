@@ -70,6 +70,7 @@ function MainPage() {
                 console.log(res);
                 console.log(res.data);
             })
+        setCurrentPage((page) => page + 1);
     }
 
     //Card Width
@@ -88,6 +89,9 @@ function MainPage() {
         else if (currentPage === 4) {
             setCardWidth('50rem');
         }
+        else if (currentPage === 5) {
+            setCardWidth('45rem');
+        }
     }, [currentPage])
 
     //Page Change
@@ -104,6 +108,11 @@ function MainPage() {
         else if (page === 4) {
             return <SummaryPage cost={totalCost} handleFormSubmit={handleFormSubmit} />
         }
+        else if (page === 5) {
+            return <div className='text-center'>
+                <h1>Thank you for signing up!</h1>
+            </div>
+        }
     }
 
 
@@ -119,24 +128,32 @@ function MainPage() {
                             handlePageChange(currentPage)
                         }
                         {/* Navigation Bar */}
-                        <div className="d-flex mt-5 justify-content-between w-100 ">
-                            {
-                                //Page 1: No back button
-                                currentPage === 1 ?
-                                    <></>
-                                    :
-                                    <button onClick={goToPreviousPage} type="submit" className="btn btn-light">Go back</button>
-                            }
-                            {
-                                //Page 3: Next Button sends post request and goes to next page
-                                currentPage === 3 ? <button onClick={handleFormChange} type="submit" className="btn btn-primary">Next Step</button>
-                                    :
-                                    //Page 4: Next button changes to submit if on last page
-                                    currentPage === totalPages ?
-                                        <button type="submit" onClick={handleFormSubmit} className="btn btn-primary align-self-end">Submit</button>
-                                        :
-                                        <button onClick={goToNextPage} type="submit" className="btn btn-primary">Next Step</button>}
-                        </div>
+
+                        {
+                            //Page 5: No navigation bar
+                            currentPage === 5 ?
+                                <></>
+                                :
+                                <div className="d-flex mt-5 justify-content-between w-100 ">
+
+                                    {
+                                        //Page 1: No back button
+                                        currentPage === 1 ?
+                                            <></>
+                                            :
+                                            <button onClick={goToPreviousPage} type="submit" className="btn btn-light">Go back</button>
+                                    }
+                                    {
+                                        //Page 3: Next Button sends post request and goes to next page
+                                        currentPage === 3 ? <button onClick={handleFormChange} type="submit" className="btn btn-primary">Next Step</button>
+                                            :
+                                            //Page 4: Next button changes to submit if on last page
+                                            currentPage === totalPages ?
+                                                <button type="submit" onClick={handleFormSubmit} className="btn btn-primary align-self-end">Submit</button>
+                                                :
+                                                <button onClick={goToNextPage} type="submit" className="btn btn-primary">Next Step</button>}
+                                </div>
+                        }
                     </div>
 
                     {console.log(currentPage)}
